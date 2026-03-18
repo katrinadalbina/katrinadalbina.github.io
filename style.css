@@ -19,11 +19,11 @@
 /* ============================================
    PAMATA BODY STILI
    ============================================ */
-
-body {
     /* ↑ Stili VISAM lapas saturam */
    
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+   body {
+    font-family: 'Cormorant Garamond', serif;
+
     /* ↑ Izmanto sistēmas fontu (Mac/Windows default) */
     /* Sans-serif = bez dekoratīvām līnijām */
    
@@ -35,7 +35,7 @@ body {
     /* ↑ Teksta krāsa - gandrīz melns (ne 100% melns) */
     /* Hex kods: # + 6 simboli (RR GG BB) */
    
-    background: #ff31ad;
+    background: #f853b6;
     /* ↑ Lapas fona krāsa - gaišs pelēks */
 }
 
@@ -233,132 +233,78 @@ main {
    GALERIJA - Projektu grid
    ============================================ */
 
+/* ============================================
+   PORTFOLIO GALERIJA - Horizontāla scroll galerija
+   ============================================ */
+
 .gallery {
-    /* ↑ Container projektu kartītēm */
-   
-    display: grid;
-    /* ↑ CSS Grid layout (nevis flexbox) */
-    /* Grid = 2D layout (rindas UN kolonnas) */
-   
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    /* ↑ MAĢIJA! Automātisks kolonnu skaits */
-    /* repeat = atkārto */
-    /* auto-fit = pielāgojas ekrāna platumam */
-    /* minmax(400px, 1fr) = minimums 400px, maksimums 1 daļa */
-    /* Rezultāts: 3 kolonnas plašam, 2 vidējam, 1 mobilajam */
-   
-    gap: 3rem;
-    /* ↑ Atstarpe starp grid elementiem */
+    display: flex;              /* Horizontāla rinda */
+    gap: 2rem;                  /* Atstarpe starp kartītēm */
+    overflow-x: auto;           /* Scroll horizontāli */
+    padding-bottom: 1rem;       /* Mazliet vietas zem kartītēm */
+    scroll-behavior: smooth;    /* Gluds scroll */
+}
+
+/* Noņem scroll bar vizuāli */
+.gallery::-webkit-scrollbar {
+    display: none;
+}
+.gallery {
+    -ms-overflow-style: none;   /* Internet Explorer */
+    scrollbar-width: none;      /* Firefox */
 }
 
 /* ============================================
-   PROJEKTA KARTĪTE - Atsevišķs darbs
+   PROJEKTA KARTĪTE
    ============================================ */
 
 .project-card {
-    /* ↑ Vispārīgi stili VISĀM kartītēm */
-   
-    background: white;
-    /* ↑ Balts fons */
-   
+    min-width: 400px;           /* Garantē minimālo platumu */
+    flex-shrink: 0;             /* Neļauj kartītei sarauties */
+    background: white;           /* Saglabā kartītes fona krāsu */
     transition: transform 0.3s ease;
-    /* ↑ Animē transform izmaiņas 0.3 sekundes */
-    /* ease = sākas lēni, paātrinās, beidzas lēni */
-   
     cursor: pointer;
-    /* ↑ Kursors kļūst par rociņu (norāda, ka klikšķināms) */
 }
 
 .project-card:hover {
-    /* ↑ Kad pele ir virs kartītes */
-   
-    transform: translateY(-4px);
-    /* ↑ Paceļ kartīti 4px uz augšu */
-    /* Negatīvs Y = uz augšu, pozitīvs = uz leju */
+    transform: translateY(-4px); /* Hover efekts: paceļ kartīti uz augšu */
 }
 
+/* ============================================
+   ATTĒLA VIETA
+   ============================================ */
+
 .project-card .img-placeholder {
-    /* ↑ Attēla vietas holders */
-    /* Atstarpe starp .project-card un .img-placeholder = descendant selector */
-    /* Mērķē .img-placeholder KAS IR .project-card iekšā */
-   
     width: 100%;
-    /* ↑ Pilns platums no vecāka elementa */
-   
-    aspect-ratio: 4/3;
-    /* ↑ Fiksēts platuma/augstuma attiecība */
-    /* 4:3 = standarta foto proporcija */
-    /* Automātiski aprēķina augstumu no platuma */
-   
+    aspect-ratio: 4/3;           /* Foto proporcija */
     display: flex;
-    /* ↑ Flexbox, lai centrētu saturu */
-   
     align-items: center;
-    /* ↑ Centrē vertikāli */
-   
     justify-content: center;
-    /* ↑ Centrē horizontāli */
-   
-    font-size: 3rem;
-    /* ↑ Liels fonts (ja liek emoji vai tekstu) */
-   
-    background: #f5f5f5;
-    /* ↑ Gaišs pelēks fons (default) */
-   
+    font-size: 3rem;             /* Liels fonts (emoji/teksts) */
+    background: #f5f5f5;         /* Default fons */
     margin-bottom: 1.5rem;
-    /* ↑ Atstarpe zem attēla */
 }
 
 /* Dažādas fona krāsas katrai kartītei */
+.card1 .img-placeholder { background: #f0f0f0; }
+.card2 .img-placeholder { background: #e8e8e8; }
+.card3 .img-placeholder { background: #f5f5f5; }
 
-.card1 .img-placeholder {
-    /* ↑ Tikai pirmā kartīte (class="card1") */
-   
-    background: #f0f0f0;
-    /* ↑ Mazliet tumšāks pelēks */
-}
-
-.card2 .img-placeholder {
-    /* ↑ Tikai otrā kartīte */
-   
-    background: #e8e8e8;
-    /* ↑ Vēl tumšāks */
-}
-
-.card3 .img-placeholder {
-    /* ↑ Tikai trešā kartīte */
-   
-    background: #f5f5f5;
-    /* ↑ Gaišs (tāds pats kā default) */
-}
+/* ============================================
+   KARTĪTES TEKSTS
+   ============================================ */
 
 .project-card h3 {
-    /* ↑ Projekta nosaukums kartītē */
-   
     font-size: 1.25rem;
-    /* ↑ Vidēji liels (20px) */
-   
     font-weight: 400;
-    /* ↑ Normāls svars (ne treknraksts) */
-   
     color: #1a1a1a;
-    /* ↑ Gandrīz melns */
-   
     margin-bottom: 0.5rem;
-    /* ↑ Neliela atstarpe zem nosaukuma */
 }
 
 .project-card p {
-    /* ↑ Projekta apraksts kartītē */
-   
-    color: #666;
-    /* ↑ Vidēji pelēks (vieglāks par nosaukumu) */
-   
     font-size: 0.95rem;
-    /* ↑ Mazliet mazāks (15.2px) */
-   
     font-weight: 300;
-    /* ↑ Plāns fonts */
+    color: #666;
 }
 
 /* ============================================
